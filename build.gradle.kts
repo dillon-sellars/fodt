@@ -9,8 +9,8 @@ plugins {
     id("org.jmailen.kotlinter") version "4.3.0"
 }
 
-group = "me.nhoize"
-version = "1.0"
+group = "ot"
+version = "0.9.0"
 
 repositories {
     mavenCentral()
@@ -42,14 +42,8 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "kleep"
+            packageName = "fodt"
             packageVersion = "1.0.0"
         }
     }
 }
-
-// tasks.withType<KotlinCompile>().configureEach {
-//    kotlinOptions.freeCompilerArgs += listOf(
-//        "-Xopt-in=kotlin.RequiresOptIn"
-//    )
-// }

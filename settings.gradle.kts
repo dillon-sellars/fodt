@@ -11,4 +11,5 @@ pluginManagement {
         id("org.jetbrains.compose").version(extra["compose.version"] as String)
     }
 }
-rootProject.name = "kleep"
+rootProject.name = "fodt"
+

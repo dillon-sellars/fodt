@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package ot.api.jwt
 
 import com.auth0.jwt.exceptions.JWTDecodeException
