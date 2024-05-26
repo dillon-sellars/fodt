@@ -11,11 +11,7 @@ data class JwtResult(
 ) {
     companion object {
         fun fromArray(parts: List<String>): JwtResult {
-            return when (parts.size) {
-                1 -> JwtResult(parts[0], null, null)
-                2 -> JwtResult(parts[0], parts[1], null)
-                else -> JwtResult(parts[0], parts[1], parts[2])
-            }
+            return JwtResult(parts.getOrNull(0), parts.getOrNull(1), parts.getOrNull(2))
         }
     }
 }
@@ -27,18 +23,12 @@ data class JwtError(
 
 fun validateJwt(jwt: String): Result<JwtResult, JwtError> {
     val parts = jwt.split(".")
-    if (jwt.isBlank() || parts.isEmpty()) {
-        return Err(JwtError(false, "JWT cannot be blank"))
+    return when {
+        jwt.isBlank() || parts.isEmpty() || parts.all { it.isBlank() } ->
+            Err(JwtError(false, "JWT cannot be blank"))
+        parts.size > 3 ->
+            Err(JwtError(false, "JWT contains more than 3 parts"))
+        else ->
+            Ok(JwtResult.fromArray(parts))
     }
-    if (parts.size == 1 && parts[0].isBlank()) {
-        return Err(JwtError(false, "JWT cannot be blank"))
-    }
-    if (parts.size == 2 && parts[0].isBlank() && parts[1].isBlank()) {
-        return Err(JwtError(false, "JWT cannot be blank"))
-    }
-    if (parts.size > 3) {
-        return Err(JwtError(false, "JWT contains more than 3 parts"))
-    }
-
-    return Ok(JwtResult.fromArray(parts))
 }

@@ -1,18 +1,23 @@
 package ot.base64
 
 import androidx.compose.runtime.mutableStateOf
-import ot.jwt.b64Decode
+import ot.utils.b64Decode
+import ot.utils.b64Encode
 
 object Base64State {
-    private val decodedBase64 = mutableStateOf<String?>(null)
+    private val outputText = mutableStateOf<String?>(null)
     private val base64InputText = mutableStateOf("")
 
     fun decodedBase64(): String? {
-        return this.decodedBase64.value
+        return this.outputText.value
     }
 
     fun decodeBase64() {
-        this.decodedBase64.value = b64Decode(base64InputText.value)
+        this.outputText.value = b64Decode(base64InputText.value)
+    }
+
+    fun encodeBase64() {
+        this.outputText.value = b64Encode(base64InputText.value)
     }
 
     fun base64InputText(): String {

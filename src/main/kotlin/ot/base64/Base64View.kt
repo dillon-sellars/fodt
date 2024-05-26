@@ -1,9 +1,12 @@
 package ot.base64
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeightIn
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -26,14 +29,23 @@ fun Base64View() {
             singleLine = false,
             modifier = Modifier.fillMaxWidth().requiredHeightIn(300.dp),
         )
-        Button(modifier = Modifier.align(Alignment.CenterHorizontally), onClick = {
-            Base64State.decodeBase64()
-        }) {
-            Text("Decode")
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterHorizontally)) {
+            Button(onClick = {
+                Base64State.decodeBase64()
+            }) {
+                Text("Decode")
+            }
+            Button(onClick = {
+                Base64State.encodeBase64()
+            }) {
+                Text("Encode")
+            }
         }
         if (decodedBase64?.isNotEmpty() == true) {
-            Row {
-                MonoText(decodedBase64)
+            Row(modifier = Modifier.padding(15.dp)) {
+                SelectionContainer {
+                    MonoText(decodedBase64)
+                }
             }
         }
     }
