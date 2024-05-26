@@ -37,7 +37,7 @@ class ColorsTransformation : VisualTransformation {
         )
 }
 
-val colors = listOf(Color.Red, Color.Green, Color(95, 95, 190))
+val colors = listOf(Color(0xFF57965C), Color(0xFFC94F4F), Color(0xFF9595FF))
 
 fun buildAnnotatedStringJwt(text: String): AnnotatedString {
     val sections = text.split(".")
