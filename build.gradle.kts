@@ -4,9 +4,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.5.31"
-    id("org.jetbrains.compose") version "1.0.0-beta6-dev455"
+    id("org.jetbrains.compose") version "1.0.0"
     id("com.github.ben-manes.versions") version "0.39.0"
-    kotlin("plugin.serialization") version "1.5.21"
+    kotlin("plugin.serialization") version "1.5.31"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
 }
 
 group = "me.nhoize"
@@ -19,12 +20,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
     implementation(compose.desktop.currentOs)
     implementation("com.auth0:java-jwt:3.18.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
     implementation("commons-codec:commons-codec:1.15")
-
+    testImplementation(kotlin("test"))
+    testImplementation("io.kotest:kotest-runner-junit5:5.0.3")
+    testImplementation("io.kotest:kotest-assertions-core:5.0.3")
 }
 
 tasks.test {
@@ -32,7 +34,7 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "16"
 }
 
 compose.desktop {
@@ -47,5 +49,7 @@ compose.desktop {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    kotlinOptions.freeCompilerArgs += listOf(
+        "-Xopt-in=kotlin.RequiresOptIn"
+    )
 }
