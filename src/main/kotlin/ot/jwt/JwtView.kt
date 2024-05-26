@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ot.model.JwtState
 
 @Composable
 fun JwtView() {
@@ -38,15 +37,15 @@ fun JwtView() {
         if (decodedJwt != null) {
             Row {
                 Text("Header", modifier = Modifier.width(150.dp))
-                Text(decodedJwt.header)
+                MonoText(decodedJwt.header)
             }
             Row {
                 Text("Payload", modifier = Modifier.width(150.dp))
-                Text(decodedJwt.payload)
+                MonoText(decodedJwt.payload)
             }
-            Row {
+            Row(verticalAlignment = Alignment.Bottom) {
                 Text("Signature", modifier = Modifier.width(150.dp))
-                Text(decodedJwt.signature)
+                MonoText(decodedJwt.signature)
             }
         }
     }

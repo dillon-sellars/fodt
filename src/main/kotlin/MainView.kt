@@ -1,11 +1,12 @@
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,7 +27,7 @@ fun MainView() {
     initRouting(MyAppRoute.JWT)
     Surface {
         Row {
-            Box(modifier = Modifier.width(Dp(300.0F)), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.width(Dp(200.0F)), contentAlignment = Alignment.Center) {
                 LeftNav()
             }
             Router {
@@ -42,8 +43,12 @@ fun LeftNav() {
     Column {
         Scaffold(content = {
             Column {
-                Text("JWT", modifier = Modifier.clickable { routing.push(MyAppRoute.JWT) })
-                Text("Base64", modifier = Modifier.clickable { routing.push(MyAppRoute.BASE_64) })
+                TextButton(onClick = { routing.push(MyAppRoute.JWT) }, modifier = Modifier.fillMaxWidth()) {
+                    Text("JWT")
+                }
+                TextButton(onClick = { routing.push(MyAppRoute.BASE_64) }, modifier = Modifier.fillMaxWidth()) {
+                    Text("Base64")
+                }
             }
         })
     }

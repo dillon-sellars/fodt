@@ -1,4 +1,4 @@
-package ot.model
+package ot.jwt
 
 import androidx.compose.runtime.mutableStateOf
 import org.apache.commons.codec.binary.Base64

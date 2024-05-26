@@ -1,28 +1,40 @@
 package ot.base64
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.requiredHeightIn
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ot.jwt.MonoText
 
 @Composable
 fun Base64View() {
-    val textState = remember { mutableStateOf("") }
+    val decodedBase64 = Base64State.decodedBase64()
     Column {
         TextField(
-            value = textState.value,
-            onValueChange = { textState.value = it },
+            value = Base64State.base64InputText(),
+            onValueChange = { Base64State.setBase64InputText(it) },
             maxLines = 15,
             label = { Text("Base64") },
             readOnly = false,
             singleLine = false,
             modifier = Modifier.fillMaxWidth().requiredHeightIn(300.dp),
         )
+        Button(modifier = Modifier.align(Alignment.CenterHorizontally), onClick = {
+            Base64State.decodeBase64()
+        }) {
+            Text("Decode")
+        }
+        if (decodedBase64?.isNotEmpty() == true) {
+            Row {
+                MonoText(decodedBase64)
+            }
+        }
     }
 }
