@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import ot.theme.attr.*
 
 private val BlueDarkColorPalette = darkColors(
-    primary = blue700,
+    primary = blue200,
     onPrimary = Color.White,
     primaryVariant = blue800,
     secondary = yellow500,

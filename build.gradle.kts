@@ -22,7 +22,7 @@ repositories {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation("com.auth0:java-jwt:3.18.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("commons-codec:commons-codec:1.15")
     testImplementation(kotlin("test"))
     testImplementation("io.kotest:kotest-runner-junit5:5.0.3")

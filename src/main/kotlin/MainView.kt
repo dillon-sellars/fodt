@@ -1,5 +1,6 @@
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
@@ -14,34 +15,35 @@ import ot.model.JwtState
 fun MainView() {
     val textState = remember { mutableStateOf("") }
     val decodedJwt = JwtState.decodedJwt()
-
-    Column(Modifier.fillMaxSize(), Arrangement.spacedBy(5.dp)) {
-        TextField(
-            value = textState.value,
-            onValueChange = { textState.value = it },
-            maxLines = 15,
-            label = { Text("JWT") },
-            readOnly = false,
-            singleLine = false,
-            modifier = Modifier.fillMaxWidth().requiredHeightIn(300.dp),
-        )
-        Button(modifier = Modifier.align(Alignment.CenterHorizontally), onClick = {
-            JwtState.decodeJwt(textState.value)
-        }) {
-            Text("Decode")
-        }
-        if (decodedJwt != null) {
-            Row {
-                Text("Header", modifier = Modifier.width(150.dp))
-                Text(decodedJwt.header)
+    Surface {
+        Column(Modifier.fillMaxSize(), Arrangement.spacedBy(5.dp)) {
+            TextField(
+                value = textState.value,
+                onValueChange = { textState.value = it },
+                maxLines = 15,
+                label = { Text("JWT") },
+                readOnly = false,
+                singleLine = false,
+                modifier = Modifier.fillMaxWidth().requiredHeightIn(300.dp),
+            )
+            Button(modifier = Modifier.align(Alignment.CenterHorizontally), onClick = {
+                JwtState.decodeJwt(textState.value)
+            }) {
+                Text("Decode")
             }
-            Row {
-                Text("Payload", modifier = Modifier.width(150.dp))
-                Text(decodedJwt.payload)
-            }
-            Row {
-                Text("Signature", modifier = Modifier.width(150.dp))
-                Text(decodedJwt.signature)
+            if (decodedJwt != null) {
+                Row {
+                    Text("Header", modifier = Modifier.width(150.dp))
+                    Text(decodedJwt.header)
+                }
+                Row {
+                    Text("Payload", modifier = Modifier.width(150.dp))
+                    Text(decodedJwt.payload)
+                }
+                Row {
+                    Text("Signature", modifier = Modifier.width(150.dp))
+                    Text(decodedJwt.signature)
+                }
             }
         }
     }
