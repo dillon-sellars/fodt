@@ -13,7 +13,11 @@ class JwtApiTest : StringSpec({
     "should return valid jwt parts" {
         val result =
             JwtApi.decodeJwt(
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NDAyNzA5NzQsImV4cCI6MTY3MTgwNjk3NCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.rWtd0UlPgNAMAEI5gu1SYMqmQPZCBRbgTW7dRFJAezg",
+                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
+                    "eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NDAyNzA5NzQsImV4cCI6MTY3MTgwNjk3NCwiYXVkIjoid3d3LmV4YW1wbGUuY29t" +
+                    "Iiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2Nr" +
+                    "ZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0." +
+                    "rWtd0UlPgNAMAEI5gu1SYMqmQPZCBRbgTW7dRFJAezg",
             )
         val payload = Json.parseToJsonElement(result.payload)
         val sub = payload.jsonObject["sub"]

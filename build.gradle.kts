@@ -6,7 +6,7 @@ plugins {
     id("org.jetbrains.compose")
     id("com.github.ben-manes.versions") version "0.51.0"
     kotlin("plugin.serialization") version "1.9.24"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
+    id("org.jmailen.kotlinter") version "4.3.0"
 }
 
 group = "me.nhoize"

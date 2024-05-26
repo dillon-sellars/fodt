@@ -28,6 +28,7 @@ fun JwtView() {
             readOnly = false,
             singleLine = false,
             modifier = Modifier.fillMaxWidth().requiredHeightIn(300.dp),
+            visualTransformation = ColorsTransformation(),
         )
         Button(modifier = Modifier.align(Alignment.CenterHorizontally), onClick = {
             JwtState.decodeJwt()
