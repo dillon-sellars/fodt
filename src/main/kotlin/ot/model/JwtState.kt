@@ -16,7 +16,7 @@ object JwtState {
     private val decodedJwt = mutableStateOf<JwtParts?>(null)
 
     fun decodedJwt(): JwtParts? {
-        return this.decodedJwt.value;
+        return this.decodedJwt.value
     }
 
     fun decodeJwt(jwt: String) {

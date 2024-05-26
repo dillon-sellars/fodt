@@ -5,7 +5,11 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import ot.theme.attr.*
+import ot.theme.attr.blue200
+import ot.theme.attr.blue800
+import ot.theme.attr.blueDarkPrimary
+import ot.theme.attr.blueLightPrimary
+import ot.theme.attr.yellow500
 
 private val BlueDarkColorPalette = darkColors(
     primary = blue200,

@@ -1,33 +1,17 @@
 package ot.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.*
-import androidx.compose.material.Shapes
+import androidx.compose.material.Colors
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.unit.dp
-import ot.theme.attr.*
-
-private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
-)
-
-private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
-
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)
+import ot.theme.attr.Elevations
+import ot.theme.attr.LocalElevations
+import ot.theme.attr.LocalPaddings
+import ot.theme.attr.Paddings
+import ot.theme.attr.Shapes
+import ot.theme.attr.Typography
 
 @Composable
 fun JetpackComposeMaterialTheme(
@@ -47,47 +31,9 @@ fun JetpackComposeMaterialTheme(
     ) {
         MaterialTheme(
             colors = colors,
-//            typography = Typography,
+            typography = Typography,
             shapes = Shapes,
             content = content
         )
     }
-}
-
-object JetpackComposeMaterialTheme {
-    /**
-     * Proxy to [MaterialTheme]
-     */
-    val colors: Colors
-        @Composable
-        get() = MaterialTheme.colors
-
-    /**
-     * Proxy to [MaterialTheme]
-     */
-    val typography: Typography
-        @Composable
-        get() = MaterialTheme.typography
-
-    /**
-     * Proxy to [MaterialTheme]
-     */
-    val shapes: Shapes
-        @Composable
-        get() = MaterialTheme.shapes
-
-    /**
-     * Retrieves the current [Paddings].
-     */
-    val paddings: Paddings
-        @Composable
-        get() = LocalPaddings.current
-
-    /**
-     * Retrieves the current [Paddings].
-     */
-    val elevations: Elevations
-        @Composable
-        get() = LocalElevations.current
-
 }
