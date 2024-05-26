@@ -24,6 +24,7 @@ dependencies {
     implementation("com.auth0:java-jwt:3.18.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("commons-codec:commons-codec:1.15")
+    implementation("io.github.artemmey:compose-jb-routing:0.9.13")
     testImplementation(kotlin("test"))
     testImplementation("io.kotest:kotest-runner-junit5:5.0.3")
     testImplementation("io.kotest:kotest-assertions-core:5.0.3")
@@ -48,7 +49,7 @@ compose.desktop {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += listOf(
         "-Xopt-in=kotlin.RequiresOptIn"
     )
