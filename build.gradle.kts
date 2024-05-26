@@ -3,11 +3,11 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.31"
-    id("org.jetbrains.compose") version "1.0.0"
+    kotlin("jvm") version "1.6.10"
+    id("org.jetbrains.compose") version "1.0.1"
     id("com.github.ben-manes.versions") version "0.39.0"
-    kotlin("plugin.serialization") version "1.5.31"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
+    kotlin("plugin.serialization") version "1.6.10"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
 group = "me.nhoize"
@@ -35,7 +35,7 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "16"
+    kotlinOptions.jvmTarget = "17"
 }
 
 compose.desktop {
