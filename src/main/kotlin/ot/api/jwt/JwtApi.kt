@@ -5,7 +5,6 @@ import ot.model.JwtParts
 import ot.model.b64Decode
 
 object JwtApi {
-
     fun decodeJwt(jwt: String): JwtParts {
         val decoded = JWT.decode(jwt)
 //        val claimsMap = decoded.claims.filter { it.value.asString() != null }.mapValues { it.value.asString() }

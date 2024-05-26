@@ -11,20 +11,21 @@ import ot.theme.attr.blueDarkPrimary
 import ot.theme.attr.blueLightPrimary
 import ot.theme.attr.yellow500
 
-private val BlueDarkColorPalette = darkColors(
-    primary = blue200,
-    onPrimary = Color.White,
-    primaryVariant = blue800,
-    secondary = yellow500,
-    surface = blueDarkPrimary
-)
+private val BlueDarkColorPalette =
+    darkColors(
+        primary = blue200,
+        onPrimary = Color.White,
+        primaryVariant = blue800,
+        secondary = yellow500,
+        surface = blueDarkPrimary,
+    )
 
-private val BlueLightColorPalette = lightColors(
-    primary = blue200,
-    secondary = blue800,
-    onSecondary = Color.White,
-    surface = blueLightPrimary
-
+private val BlueLightColorPalette =
+    lightColors(
+        primary = blue200,
+        secondary = blue800,
+        onSecondary = Color.White,
+        surface = blueLightPrimary,
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -32,18 +33,20 @@ private val BlueLightColorPalette = lightColors(
     onSecondary = Color.Black,
     onBackground = Color.Black,
     onSurface = Color.Black,
-    */
-)
+     */
+    )
 
 @Composable
-fun BlueTheme(
+fun blueTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content:
+        @Composable()
+        () -> Unit,
 ) {
-    JetpackComposeMaterialTheme(
+    jetpackComposeMaterialTheme(
         lightColorPalette = BlueLightColorPalette,
         darkColorPalette = BlueDarkColorPalette,
         darkTheme = darkTheme,
-        content = content
+        content = content,
     )
 }

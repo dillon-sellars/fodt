@@ -14,26 +14,29 @@ import ot.theme.attr.Shapes
 import ot.theme.attr.Typography
 
 @Composable
-fun JetpackComposeMaterialTheme(
+fun jetpackComposeMaterialTheme(
     lightColorPalette: Colors,
     darkColorPalette: Colors,
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content:
+        @Composable()
+        () -> Unit,
 ) {
-    val colors = if (darkTheme) {
-        darkColorPalette
-    } else {
-        lightColorPalette
-    }
+    val colors =
+        if (darkTheme) {
+            darkColorPalette
+        } else {
+            lightColorPalette
+        }
     CompositionLocalProvider(
         LocalPaddings provides Paddings(),
-        LocalElevations provides Elevations(card = 8.dp)
+        LocalElevations provides Elevations(card = 8.dp),
     ) {
         MaterialTheme(
             colors = colors,
             typography = Typography,
             shapes = Shapes,
-            content = content
+            content = content,
         )
     }
 }

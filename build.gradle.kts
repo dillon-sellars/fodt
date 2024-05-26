@@ -1,40 +1,39 @@
-import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.compose") version "1.0.1"
-    id("com.github.ben-manes.versions") version "0.39.0"
-    kotlin("plugin.serialization") version "1.6.10"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+    kotlin("jvm")
+    id("org.jetbrains.compose")
+    id("com.github.ben-manes.versions") version "0.51.0"
+    kotlin("plugin.serialization") version "1.9.24"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
 group = "me.nhoize"
 version = "1.0"
 
 repositories {
-    google()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    google()
 }
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation("com.auth0:java-jwt:3.18.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    implementation("commons-codec:commons-codec:1.15")
+    implementation("com.auth0:java-jwt:4.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("commons-codec:commons-codec:1.17.0")
     implementation("io.github.artemmey:compose-jb-routing:0.9.13")
     testImplementation(kotlin("test"))
-    testImplementation("io.kotest:kotest-runner-junit5:5.0.3")
-    testImplementation("io.kotest:kotest-assertions-core:5.0.3")
+    testImplementation("io.kotest:kotest-runner-junit5:5.9.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.9.0")
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile>() {
+tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "17"
 }
 
@@ -49,8 +48,8 @@ compose.desktop {
     }
 }
 
-tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions.freeCompilerArgs += listOf(
-        "-Xopt-in=kotlin.RequiresOptIn"
-    )
-}
+// tasks.withType<KotlinCompile>().configureEach {
+//    kotlinOptions.freeCompilerArgs += listOf(
+//        "-Xopt-in=kotlin.RequiresOptIn"
+//    )
+// }

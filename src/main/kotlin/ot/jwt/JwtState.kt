@@ -12,7 +12,6 @@ fun b64Decode(input: String): String {
 }
 
 object JwtState {
-
     private val decodedJwt = mutableStateOf<JwtParts?>(null)
     private val jwtInputText = mutableStateOf("")
 

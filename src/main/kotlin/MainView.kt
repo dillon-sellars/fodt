@@ -18,35 +18,35 @@ import ru.impression.compose_jb_routing.initRouting
 import ru.impression.compose_jb_routing.routing
 
 object MyAppRoute {
-    const val Jwt = "/jwt"
-    const val Base64 = "/base64"
+    const val JWT = "/jwt"
+    const val BASE_64 = "/base64"
 }
 
 @Composable
-fun MainView() {
-    initRouting(MyAppRoute.Jwt)
+fun mainView() {
+    initRouting(MyAppRoute.JWT)
     Surface {
         Row {
             Box(modifier = Modifier.width(Dp(300.0F)), contentAlignment = Alignment.Center) {
-                LeftNav()
+                leftNav()
             }
             Router {
-                route(MyAppRoute.Jwt, exact = true) { JwtView() }
-                route(MyAppRoute.Base64, exact = true) { Base64View() }
+                route(MyAppRoute.JWT, exact = true) { JwtView() }
+                route(MyAppRoute.BASE_64, exact = true) { Base64View() }
             }
         }
     }
 }
 
 @Composable
-fun LeftNav() {
+fun leftNav() {
     Column {
         Scaffold(topBar = {
             TopAppBar(title = { Text("Left Nav") })
         }, content = {
             Column {
-                Text("JWT", modifier = Modifier.clickable { routing.push(MyAppRoute.Jwt) })
-                Text("Base64", modifier = Modifier.clickable { routing.push(MyAppRoute.Base64) })
+                Text("JWT", modifier = Modifier.clickable { routing.push(MyAppRoute.JWT) })
+                Text("Base64", modifier = Modifier.clickable { routing.push(MyAppRoute.BASE_64) })
             }
         })
     }
