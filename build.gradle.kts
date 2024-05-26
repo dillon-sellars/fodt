@@ -24,6 +24,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("commons-codec:commons-codec:1.17.0")
     implementation("io.github.artemmey:compose-jb-routing:0.9.13")
+    implementation("com.michael-bull.kotlin-result:kotlin-result:2.0.0")
     testImplementation(kotlin("test"))
     testImplementation("io.kotest:kotest-runner-junit5:5.9.0")
     testImplementation("io.kotest:kotest-assertions-core:5.9.0")

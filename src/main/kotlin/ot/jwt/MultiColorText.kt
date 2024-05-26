@@ -40,12 +40,14 @@ class ColorsTransformation : VisualTransformation {
 val colors = listOf(Color(0xFF57965C), Color(0xFFC94F4F), Color(0xFF9595FF))
 
 fun buildAnnotatedStringJwt(text: String): AnnotatedString {
-    val sections = text.split(".")
+    val jwtResult = validateJwt(text)
     val builder = AnnotatedString.Builder()
-    if (sections.isEmpty() || sections.size == 1 && sections[0].isBlank() || sections.size > 3) {
+    if (jwtResult.isErr) {
         builder.append(text)
         return builder.toAnnotatedString()
     }
+
+    val sections = listOfNotNull(jwtResult.value.header, jwtResult.value.payload, jwtResult.value.signature)
 
     sections.forEachIndexed { idx, element ->
         builder.withStyle(style = SpanStyle(color = colors[idx % 3])) {

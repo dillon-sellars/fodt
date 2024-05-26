@@ -11,6 +11,6 @@ fun main() =
             title = "Offline Toolbox",
             state = rememberWindowState(width = 1024.dp, height = 768.dp),
         ) {
-            blueTheme { mainView() }
+            blueTheme { MainView() }
         }
     }
