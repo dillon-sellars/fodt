@@ -1,12 +1,13 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
     id("org.jetbrains.compose")
     id("com.github.ben-manes.versions") version "0.51.0"
-    kotlin("plugin.serialization") version "1.9.24"
+    kotlin("plugin.serialization") version "2.0.0"
     id("org.jmailen.kotlinter") version "4.3.0"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
 }
 
 group = "ot"
@@ -34,8 +35,31 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "17"
+val toolchainAction: (JavaToolchainSpec).() -> Unit = {
+    languageVersion = JavaLanguageVersion.of(21)
+    vendor = JvmVendorSpec.AZUL
+}
+
+java {
+    toolchain(toolchainAction)
+}
+
+kotlin {
+    jvmToolchain(toolchainAction)
+}
+
+fun isNonStable(version: String): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(version)
+    return isStable.not()
+}
+
+// https://github.com/ben-manes/gradle-versions-plugin
+tasks.withType<DependencyUpdatesTask> {
+    rejectVersionIf {
+        isNonStable(candidate.version)
+    }
 }
 
 compose.desktop {
