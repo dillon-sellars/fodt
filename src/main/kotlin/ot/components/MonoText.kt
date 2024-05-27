@@ -1,4 +1,4 @@
-package ot.jwt
+package ot.components
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
