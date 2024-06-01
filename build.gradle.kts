@@ -11,7 +11,6 @@ plugins {
 }
 
 group = "ot"
-version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -68,9 +67,16 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "fodt"
-            packageVersion = "1.0.0"
+            packageVersion = project.version.toString()
             macOS {
                 iconFile.set(project.file("src/main/resources/icon.icns"))
+            }
+            windows {
+                menuGroup = "fodt"
+                iconFile.set(project.file("src/main/resources/icon.ico"))
+            }
+            linux {
+                iconFile.set(project.file("src/main/resources/icon.png"))
             }
         }
     }
