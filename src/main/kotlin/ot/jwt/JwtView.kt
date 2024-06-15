@@ -38,15 +38,15 @@ fun JwtView() {
         if (decodedJwt != null) {
             Row {
                 Text("Header", modifier = Modifier.width(150.dp))
-                MonoText(decodedJwt.header)
+                MonoText(decodedJwt.header ?: "")
             }
             Row {
                 Text("Payload", modifier = Modifier.width(150.dp))
-                MonoText(decodedJwt.payload)
+                MonoText(decodedJwt.payload ?: "")
             }
             Row(verticalAlignment = Alignment.Bottom) {
                 Text("Signature", modifier = Modifier.width(150.dp))
-                MonoText(decodedJwt.signature)
+                MonoText(decodedJwt.signature ?: "")
             }
         }
     }

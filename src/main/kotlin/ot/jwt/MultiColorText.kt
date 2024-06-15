@@ -10,6 +10,7 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
+import ot.api.jwt.JwtApi
 
 data class TextWithColor(
     val text: String,
@@ -40,14 +41,14 @@ class ColorsTransformation : VisualTransformation {
 val colors = listOf(Color(0xFF57965C), Color(0xFFC94F4F), Color(0xFF9595FF))
 
 fun buildAnnotatedStringJwt(text: String): AnnotatedString {
-    val jwtResult = validateJwt(text)
+    val jwtResult = JwtApi.validateJwt(text)
     val builder = AnnotatedString.Builder()
     if (jwtResult.isErr) {
         builder.append(text)
         return builder.toAnnotatedString()
     }
 
-    val sections = listOfNotNull(jwtResult.value.header, jwtResult.value.payload, jwtResult.value.signature)
+    val sections = listOfNotNull(jwtResult.value.parts.header, jwtResult.value.parts.payload, jwtResult.value.parts.signature)
 
     sections.forEachIndexed { idx, element ->
         builder.withStyle(style = SpanStyle(color = colors[idx % 3])) {

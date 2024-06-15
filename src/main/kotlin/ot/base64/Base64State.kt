@@ -1,8 +1,7 @@
 package ot.base64
 
 import androidx.compose.runtime.mutableStateOf
-import ot.utils.b64Decode
-import ot.utils.b64Encode
+import ot.utils.Base64
 
 object Base64State {
     private val outputText = mutableStateOf<String?>(null)
@@ -13,11 +12,11 @@ object Base64State {
     }
 
     fun decodeBase64() {
-        this.outputText.value = b64Decode(base64InputText.value)
+        this.outputText.value = Base64.decode(base64InputText.value)
     }
 
     fun encodeBase64() {
-        this.outputText.value = b64Encode(base64InputText.value)
+        this.outputText.value = Base64.encode(base64InputText.value)
     }
 
     fun base64InputText(): String {

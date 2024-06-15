@@ -2,24 +2,25 @@ package ot.jwt
 
 import androidx.compose.runtime.mutableStateOf
 import ot.api.jwt.JwtApi
-
-data class JwtParts(val header: String, val payload: String, val signature: String)
+import ot.api.jwt.JwtDecodedParts
 
 object JwtState {
-    private val decodedJwt = mutableStateOf<JwtParts?>(null)
+    private val decodedJwt = mutableStateOf<JwtDecodedParts?>(null)
     private val jwtInputText = mutableStateOf("")
 
-    fun decodedJwt(): JwtParts? {
-        return this.decodedJwt.value
-    }
+    fun decodedJwt(): JwtDecodedParts? = this.decodedJwt.value
 
     fun decodeJwt() {
-        this.decodedJwt.value = JwtApi.decodeJwt(jwtInputText.value)
+        val validatedJwt = JwtApi.validateJwt(jwtInputText.value)
+        if (validatedJwt.isOk) {
+            val result = JwtApi.decodeJwt(validatedJwt.value.parts)
+            if (result.isOk) {
+                decodedJwt.value = result.value
+            }
+        }
     }
 
-    fun jwtInputText(): String {
-        return this.jwtInputText.value
-    }
+    fun jwtInputText(): String = this.jwtInputText.value
 
     fun setJwtInputText(jwt: String) {
         this.jwtInputText.value = jwt
